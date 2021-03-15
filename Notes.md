@@ -55,26 +55,3 @@
 
 ### Manually Sign Up New Users in React with AWS Amplify Auth Class
 - `import { Auth } from 'aws-amplify'`
-- Add state (username, password, etc) and event handlers for the fields
-- Mostly react state management and form creation except for calling these function
-```
-  const signup = async () => {
-    try {
-      await Auth.signUp({ username, password, attributes: { email, phone_number: phoneNumber } });
-      setSignupStep(1);
-      console.log('successfully signed up!');
-    } catch (err) {
-      console.log(`error signing up: ${err}`);
-    }
-  };
-
-  const confirmSignup = async () => {
-    try {
-      await Auth.confirmSignUp(username, authenticationCode);
-      console.log('user successfully confirmed signup!');
-    } catch (err) {
-      console.log(`error confirming signup: ${err}`)
-    }
-  };
-  ```
-- [Expected phone number format](https://forums.aws.amazon.com/thread.jspa?threadID=275041) is +(countrycode)########## like `+01234567890`
