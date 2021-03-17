@@ -7,6 +7,7 @@
       "customAuth": false
     }
   },
+<<<<<<< Updated upstream
   "api": {
     "myAmplifyTodoApp": {
       "service": "AppSync",
@@ -23,6 +24,29 @@
           "additionalAuthenticationProviders": []
         }
       }
+=======
+  "function": {
+    "peopleFunction": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda"
+    }
+  },
+  "api": {
+    "peopleApi": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "peopleFunction",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+>>>>>>> Stashed changes
     }
   }
 }

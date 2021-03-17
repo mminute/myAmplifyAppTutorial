@@ -115,4 +115,13 @@ const ListTodos = `
 - `const todoData = await API.graphql(graphqlOperation(ListTodos));`
 
 ### Create & Interact with a Serverless REST API with AWS Lambda from React
-Skipping adding a rest api????
+- `amplify add api`
+  - choose rest
+  - call api `peopleApi`
+  - path: `/people`
+  - lambda source: create new lambda function
+  - provide a name
+  - provide a lamda function name
+  - choose function template Serverless ExpressJS function
+- edit the functions you created `my-amplify-app/amplify/backend/function/peopleFunction/src/app.js`
+- Star wars api isnt returning anything
