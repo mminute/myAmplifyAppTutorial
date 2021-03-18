@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import { withAuthenticator } from 'aws-amplify-react';
-import { API, graphqlOperation } from 'aws-amplify';
+import { API, graphqlOperation, Storage } from 'aws-amplify';
 
 // const ListTodos = `
 //   query {
@@ -18,43 +18,35 @@ import { API, graphqlOperation } from 'aws-amplify';
 // `
 
 function App() {
-  // const [todos, setTodos] = useState([]);
+  const [fileUrl, setFileUrl] = useState('');
+  const [file, setFile] = useState('');
+  const [filename, setFilename] = useState('');
 
-  // useEffect(async ()=> {
-  //   const todoData = await API.graphql(graphqlOperation(ListTodos));
-  //   setTodos(todoData.data.listTodos.items);
-  // }, []);
+  const handleChange = (e) => {
+    const targetFile = e.target.files[0];
+    setFile(targetFile);
+    setFileUrl(URL.createObjectURL(targetFile));
+    setFilename(targetFile.name);
+  };
 
-  // console.log(todos);
-
-  // return (
-  //   <div className="App">
-  //     {todos.map((todo) => (
-  //       <div>
-  //         <h3>{todo.name}</h3>
-  //         <p>{todo.description}</p>
-  //       </div>
-  //     ))}
-  //   </div>
-  // );
-  const [people, setPeople] = useState([]);
-
-  useEffect(async () => {
-    const data = await API.get('peopleApi', '/people');
-    console.log(data);
-    setPeople(data.people)
-  }, []);
+  const saveFile = () => {
+    Storage.put(filename, file)
+      .then(() => {
+        console.log('successfully saved!');
+        setFilename('');
+        setFile('');
+        setFileUrl('');
+      })
+      .catch((err) => {
+        console.log(err);
+      })
+  }
 
   return (
     <div className="App">
-      {people.map((person, i) => (
-        <div key={person.name}>
-          <h3>
-            {person.name}
-          </h3>
-          <p>{person.hairColor}</p>
-        </div>
-      ))}
+      <input type="file" onChange={handleChange} />
+      <img src={fileUrl} />
+      <button onClick={saveFile}>Save File</button>
     </div>
   );
 }
