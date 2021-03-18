@@ -125,3 +125,14 @@ const ListTodos = `
   - choose function template Serverless ExpressJS function
 - edit the functions you created `my-amplify-app/amplify/backend/function/peopleFunction/src/app.js`
 - Star wars api isnt returning anything
+
+### Store Data in Amazon S3 with React
+- `amplify add storage`
+- add `content`
+- provide a name for this resource
+- provide a bucket name or accept the default (name must be unique)
+- access- `authorized`
+  - give them read and write
+- Now that resources have been created locally run `amplify push` to create them in your aws account
+- import the storage API from amplify `import { Storage } from 'aws-amplify'`
+- `Storage.put().then().catch()`
