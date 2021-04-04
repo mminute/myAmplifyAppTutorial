@@ -138,3 +138,15 @@ const ListTodos = `
 - `Storage.put().then().catch()`
 - `Storage.list()` to get a list of everything in the bucket
 - `Storage.get(<filename>)`
+
+### Deploy Your React Application to AWS using the Amplify CLI
+- To add hosting:
+  - `amplify add hosting`
+  - `Select the plugin module to execute Amazon CloudFront and S3`
+  - Select `DEV` (S3 only with HTTP) or `PROD` (S3 with Cloudfront using HTTPS)
+  - For tutorail choose DEV
+  - Give bucket a name
+  - Choose index and error docs - `index.html`
+- `amplify publish`
+- App should run automatically.
+  - Look at the url. it should originate in the S3 bucket
