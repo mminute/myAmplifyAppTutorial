@@ -136,3 +136,5 @@ const ListTodos = `
 - Now that resources have been created locally run `amplify push` to create them in your aws account
 - import the storage API from amplify `import { Storage } from 'aws-amplify'`
 - `Storage.put().then().catch()`
+- `Storage.list()` to get a list of everything in the bucket
+- `Storage.get(<filename>)`
